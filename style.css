@@ -208,10 +208,11 @@ body {
 }
 
 .skills-grid {
-    display: grid;
-    
-    grid-template-columns: repeat(5, 1fr);
+    display: flex;
     gap: 24px;
+    align-items: flex-start;
+    overflow-x: auto;
+    padding-bottom: 8px;
 }
 
 
@@ -227,6 +228,11 @@ body {
 .skill-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.skills-grid .skill-card {
+    flex: 0 0 220px;
+    min-width: 180px;
 }
 
 .skill-header {
@@ -316,8 +322,10 @@ body {
     }
 
     .skills-grid {
-        grid-template-columns: 1fr;
+        display: flex;
         gap: 25px;
+        overflow-x: auto;
+        padding-bottom: 8px;
     }
 
     .skill-header {
