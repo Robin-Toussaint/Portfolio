@@ -21,7 +21,7 @@
     btn.addEventListener('click', ()=>{
       out.textContent='Chargement... (simulation)';
       setTimeout(()=>{
-        const fake={id:1, message:'Hello from simulated API', time:new Date().toLocaleString()};
+        const fake={id:1, message:'Hello World', time:new Date().toLocaleString()};
         out.textContent=JSON.stringify(fake,null,2);
       }, 900);
     });
