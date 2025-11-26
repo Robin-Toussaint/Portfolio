@@ -19,7 +19,7 @@
   <script>
     const btn=document.getElementById('call'); const out=document.getElementById('result');
     btn.addEventListener('click', ()=>{
-      out.textContent='Chargement... (simulation)';
+      out.textContent='Chargement...';
       setTimeout(()=>{
         const fake={id:1, message:'Hello World', time:new Date().toLocaleString()};
         out.textContent=JSON.stringify(fake,null,2);
