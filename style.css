@@ -213,6 +213,10 @@ body {
     align-items: flex-start;
     overflow-x: auto;
     padding-bottom: 8px;
+    flex-wrap: nowrap;
+    width: 100%;
+    padding-right: 28px; /* avoid last card sticking to edge */
+    -webkit-overflow-scrolling: touch;
 }
 
 
@@ -231,8 +235,8 @@ body {
 }
 
 .skills-grid .skill-card {
-    flex: 0 0 220px;
-    min-width: 180px;
+    flex: 0 0 200px;
+    min-width: 160px;
 }
 
 .skill-header {
