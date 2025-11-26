@@ -68,7 +68,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     function closeModal(){
         if(!modal || !frame) return;
-        frame.src = '';
+        // set to about:blank to ensure no previous page remains in iframe history
+        try { frame.src = 'about:blank'; } catch(e) { frame.src = ''; }
         modal.setAttribute('aria-hidden','true');
     }
 
@@ -82,5 +83,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
     
     if(modal) modal.addEventListener('click', e => { if(e.target === modal) closeModal(); });
+    
+    // Listen for iframe requests to close the demo (postMessage from demos)
+    window.addEventListener('message', (ev) => {
+        if (!ev.data) return;
+        if (ev.data.type === 'close-demo') closeModal();
+    });
 })();
 

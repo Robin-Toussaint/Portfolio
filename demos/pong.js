@@ -8,9 +8,10 @@
   let difficulty = 'Nightmare';
 
   const DIFFICULTIES = {
-    Easy: { paddleSpeed: 5, reaction: 0.22, error: 40, ballMult: 0.95 },
-    Medium: { paddleSpeed: 8, reaction: 0.12, error: 14, ballMult: 1.0 },
-    Hard: { paddleSpeed: 12, reaction: 0.06, error: 6, ballMult: 1.08 },
+    // Make Easy clearly weaker: slow, high reaction time, large tracking error, slower ball
+    Easy: { paddleSpeed: 3, reaction: 0.6, error: 120, ballMult: 0.7 },
+    Medium: { paddleSpeed: 7, reaction: 0.2, error: 30, ballMult: 0.95 },
+    Hard: { paddleSpeed: 12, reaction: 0.08, error: 8, ballMult: 1.05 },
     Nightmare: { paddleSpeed: 20, reaction: 0.0, error: 0, ballMult: 1.18 }
   };
 
@@ -117,7 +118,14 @@
   window.addEventListener('keydown', (e) => {
     if (e.key === 'p' || e.code === 'Space') { paused = !paused; }
     if (e.key === 'r') { scoreL = 0; scoreR = 0; resetBall(1); }
-    if (e.key === 'Escape') { window.history.back(); }
+    if (e.key === 'Escape') {
+      // Request parent to close the demo if inside an iframe, otherwise go back
+      if (window.parent && window.parent !== window) {
+        window.parent.postMessage({ type: 'close-demo' }, '*');
+      } else {
+        window.history.back();
+      }
+    }
   });
 
   // settings modal
@@ -129,11 +137,28 @@
   closeBtn.addEventListener('click', () => { modal.setAttribute('aria-hidden','true'); });
   applyBtn.addEventListener('click', () => {
     const val = document.querySelector('input[name="difficulty"]:checked').value;
-    difficulty = val; resetBall(1); modal.setAttribute('aria-hidden','true');
+    difficulty = val; leftTarget = HEIGHT/2; rightTarget = HEIGHT/2; lastLeftReact = 0; lastRightReact = 0;
+    resetBall(1); modal.setAttribute('aria-hidden','true');
+  });
+
+  // also apply difficulty immediately when radio changes (more intuitive)
+  document.querySelectorAll('input[name="difficulty"]').forEach(r => {
+    r.addEventListener('change', (ev) => {
+      difficulty = ev.target.value;
+      leftTarget = HEIGHT/2; rightTarget = HEIGHT/2; lastLeftReact = 0; lastRightReact = 0;
+      resetBall(1);
+    });
   });
 
   document.getElementById('restartBtn').addEventListener('click', () => { scoreL=0; scoreR=0; resetBall(1); });
-  document.getElementById('backBtn').addEventListener('click', () => { window.history.back(); });
+  document.getElementById('backBtn').addEventListener('click', () => {
+    // If running inside an iframe, request parent to close the demo modal
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({ type: 'close-demo' }, '*');
+    } else {
+      window.history.back();
+    }
+  });
 
   // init UI values
   (function initUI(){ const radios = document.querySelectorAll('input[name="difficulty"]'); radios.forEach(r => { if (r.value===difficulty) r.checked=true }); })();
