@@ -43,7 +43,7 @@ body {
 }
 
 
-/* Navbar */
+
 .navbar {
     position: fixed;
     top: 0;
@@ -141,7 +141,7 @@ body {
     }
 }
 
-/* En-tête */
+
 .header {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: var(--white);
