@@ -7,7 +7,7 @@ window.addEventListener('scroll', () => {
     const progressBar = document.querySelector('.progress-bar');
     progressBar.style.width = scrollPercent + '%';
     
-    // Shrink header on scroll
+
     const header = document.querySelector('.header');
     if (header) {
         if (scrollTop > 100) {
