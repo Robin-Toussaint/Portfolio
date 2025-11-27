@@ -13,14 +13,19 @@
     
     <nav class="navbar" id="navbar">
         <div class="container navbar-inner">
-            <div class="navbar-logo">Mon Portfolio</div>
+            <div class="navbar-left">
+                <img src="./images/esgi.png" alt="ESGI logo" class="navbar-esgi" />
+                <div class="navbar-logo">Mon Portfolio</div>
+            </div>
             <ul class="navbar-links">
                 <li><a href="#accueil">Accueil</a></li>
                 <li><a href="#competences">Compétences</a></li>
                 <li><a href="#projets">Projets</a></li>
                 <li><a href="#cv" class="navbar-cv">CV</a></li>
             </ul>
-            <img src="./images/esgi.png" alt="ESGI logo" class="navbar-esgi" />
+            <div class="navbar-right">
+                <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème">🌙</button>
+            </div>
         </div>
     </nav>
 
@@ -124,7 +129,7 @@
 
                 <div class="demo-card">
                     <img src="./images/JavaScript-Symbol-500x281.png" alt="API demo"/>
-                    <h3>API Simulation</h3>
+                    <h3>API Simulation</h3> 
                     
                     <button class="demo-open" data-demo-url="demos/api.html">Tester</button>
                 </div>
