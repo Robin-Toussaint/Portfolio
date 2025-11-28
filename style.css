@@ -13,6 +13,8 @@
     --white: #ffffff;
 }
 
+
+
 /* Dark theme variables — toggled by adding `dark-theme` class to <body> */
 body.dark-theme {
     --primary-color: #e6eef3;
@@ -69,7 +71,7 @@ body.dark-theme .progress-bar {
     left: 0;
     right: 0;
     height: 70px;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(240, 236, 236, 0.95);
     backdrop-filter: blur(8px) saturate(120%);
     box-shadow: 0 4px 16px rgba(13, 30, 34, 0.06);
     z-index: 1100;
@@ -341,7 +343,7 @@ img {
 
 .progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--secondary-color), #2ecc71);
+    background: linear-gradient(90deg, var(--secondary-color), #63eb9b);
     width: 0%;
     border-radius: 10px;
     transition: width 0.3s ease;
